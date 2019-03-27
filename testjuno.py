@@ -20,5 +20,5 @@ async def mom(context):
     #await client.say(random.choice(possible_responses)) for no @
     await client.say(context.message.author.mention + "," + random.choice(possible_responses))
     
-client.run(TOKEN)
+client.run(config.py)
 
