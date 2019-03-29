@@ -21,5 +21,14 @@ async def mom(context):
     #await client.say(random.choice(possible_responses)) for no @
     await client.say(context.message.author.mention + "," + random.choice(possible_responses))
     
+    #Dice Roller v1
+@client.command(name="roll",
+                description="Rolls a single d20 die; sorry Vee isn't smart enough to let you roll multiple dice",
+                brief="Does this need explaining?",
+                pass_context=True)
+async def roll(context):
+    number = range(1,20,1)
+    await client.say("You have rolled a " + random.choice(number) + ", " + context.message.author.mention)
+    
 client.run(os.getenv("TOKEN"))
 
