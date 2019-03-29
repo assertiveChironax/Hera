@@ -47,7 +47,7 @@ async def roulette(context):
             "CLICK!!",
             "Click!!",
             "BANG!!!",]
-    await client.say(context.message.author.mention + random.choice(luck))
+    await client.say(context.message.author.mention + " " + random.choice(luck))
                 
 client.run(os.getenv("TOKEN"))
 
