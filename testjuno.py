@@ -33,6 +33,21 @@ async def roll(context):
               "11", "12", "13", "14", "15",
               "16", "17", "18", "19", "20",]
     await client.say("You have rolled a " + random.choice(number) + ", " + context.message.author.mention)
+    
+#Russian Roulette
+@client.command(name="roulette",
+                description="There is one bullet in the cylinder. Test your luck.",
+                brief="Are you feeling lucky, punk?",
+                aliases=[ 'rr', 'russian', 'blyat', 'bang' ],
+                pass_context=True)
+async def roulette(context):
+    luck = ["Click.",
+            "Click!",
+            "CLICK!",
+            "CLICK!!",
+            "Click!!",
+            "BANG!!!",]
+    await client.say(context.message.author.mention + random.choice(luck))
                 
 client.run(os.getenv("TOKEN"))
 
