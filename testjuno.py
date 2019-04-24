@@ -1,8 +1,15 @@
 import random
+import math
 from discord.ext.commands import Bot
 import os
 
-BOT_PREFIX = ("!")
+#Variables for Russian Roulette:
+luck = random.randint(0,6)
+bang = 6
+luck = luck
+bang = bang
+
+BOT_PREFIX = ("?")
 
 client = Bot(command_prefix=BOT_PREFIX)
 
@@ -22,17 +29,14 @@ async def mom(context):
     #await client.say(random.choice(possible_responses)) for no @
     await client.say(context.message.author.mention + "," + random.choice(possible_responses))
 
-#Dice Roller v1
+#Dice Roller v2
 @client.command(name="roll",
                 description="Rolls a single d20 die; sorry Vee isn't smart enough to let you roll multiple dice",
                 brief="Does this need explaining?",
                 pass_context=True)
 async def roll(context):
-    number = ["1", "2", "3", "4", "5",
-              "6", "7", "8", "9", "10",
-              "11", "12", "13", "14", "15",
-              "16", "17", "18", "19", "20",]
-    await client.say("You have rolled a " + random.choice(number) + ", " + context.message.author.mention)
+    number = random.randint(1,21)
+    await client.say("You have rolled a " + number + ", " + context.message.author.mention)
     
 #Russian Roulette
 @client.command(name="roulette",
@@ -41,13 +45,27 @@ async def roll(context):
                 aliases=[ 'rr', 'russian', 'blyat', 'bang' ],
                 pass_context=True)
 async def roulette(context):
-    luck = ["Click.",
-            "Click!",
-            "CLICK!",
-            "CLICK!!",
-            "Click!!",
-            "BANG!!!",]
-    await client.say(context.message.author.mention + " " + random.choice(luck))
-                
-client.run(os.getenv("TOKEN"))
+    global luck
+    global bang
+    luck = luck + 1
+    if luck == bang:
+        await client.say(message.author.mention + " Bang!")
+        luck = luck - bang
+        return (luck)
+    if luck <= bang and luck != bang:
+        await client.say(message.author.mention + " Click!")
+        return (luck)
 
+#Reload
+@client.command(name="reload",
+                description="Reload the gun. One bullet into a new chamber.",
+                brief="Sets the bullet in a new chamber.",
+                aliases=[ 'r', 'boolet'],
+                pass_context=True)
+async def roulette(context):
+    global bang
+    bang = random.randint(0,6)
+    return (bang)
+    await client.say(message.author.mention + ", very well then. I have emptied the firearm and inserted one bullet into a random chamber.")
+    
+client.run(os.getenv("TOKEN"))
