@@ -52,7 +52,7 @@ async def roulette(context):
         await client.say(message.author.mention + " Bang!")
         luck = luck - bang
         return (luck)
-    if luck <= bang and luck != bang:
+    elif luck <= bang and luck != bang:
         await client.say(message.author.mention + " Click!")
         return (luck)
 
