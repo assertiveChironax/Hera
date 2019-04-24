@@ -28,26 +28,8 @@ async def mom(context):
                 brief="Does this need explaining?",
                 pass_context=True)
 async def roll(context):
-    number = ["1", "2", "3", "4", "5",
-              "6", "7", "8", "9", "10",
-              "11", "12", "13", "14", "15",
-              "16", "17", "18", "19", "20",]
-    await client.say("You have rolled a " + random.choice(number) + ", " + context.message.author.mention)
-    
-#Russian Roulette
-@client.command(name="roulette",
-                description="There is one bullet in the cylinder. Test your luck.",
-                brief="Are you feeling lucky, punk?",
-                aliases=[ 'rr', 'russian', 'blyat', 'bang' ],
-                pass_context=True)
-async def roulette(context):
-    luck = ["Click.",
-            "Click!",
-            "CLICK!",
-            "CLICK!!",
-            "Click!!",
-            "BANG!!!",]
-    await client.say(context.message.author.mention + " " + random.choice(luck))
+    number = random.randint(1, 21)
+    await client.say("You have rolled a " + str(number) + ", " + context.message.author.mention + ".")
                 
 client.run(os.getenv("TOKEN"))
 
