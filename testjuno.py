@@ -36,7 +36,7 @@ async def mom(context):
                 pass_context=True)
 async def roll(context):
     number = random.randint(1,21)
-    await client.say("You have rolled a " + number + ", " + context.message.author.mention)
+    await client.say("You have rolled a " + str(number) + ", " + context.message.author.mention)
     
 #Russian Roulette
 @client.command(name="roulette",
@@ -49,11 +49,11 @@ async def roulette(context):
     global bang
     luck = luck + 1
     if luck == bang:
-        await client.say(message.author.mention + " Bang!")
+        await client.say(context.message.author.mention + " Bang!")
         luck = luck - bang
         return (luck)
-    elif luck <= bang and luck != bang:
-        await client.say(message.author.mention + " Click!")
+    if luck <= bang and luck != bang:
+        await client.say(context.message.author.mention + " Click!")
         return (luck)
 
 #Reload
@@ -66,6 +66,6 @@ async def roulette(context):
     global bang
     bang = random.randint(0,6)
     return (bang)
-    await client.say(message.author.mention + ", very well then. I have emptied the firearm and inserted one bullet into a random chamber.")
+    await client.say(context.message.author.mention + ", very well then. I have emptied the firearm and inserted one bullet into a random chamber.")
     
 client.run(os.getenv("TOKEN"))
