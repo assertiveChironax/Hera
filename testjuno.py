@@ -9,10 +9,6 @@ luck = luck
 lucky = luck
 bangy = bang
 
-class Help:
-    """This is the list of commands currently available."""
-bot.add_cog(Help())
-
 BOT_PREFIX = ("!")
 
 client = Bot(command_prefix=BOT_PREFIX)
