@@ -2,6 +2,13 @@ import random
 from discord.ext.commands import Bot
 import os
 
+#Variables for Russian Roulette:
+luck = random.randint(1,6)
+bang = 6
+luck = luck
+lucky = luck
+bangy = bang
+
 BOT_PREFIX = ("!")
 
 client = Bot(command_prefix=BOT_PREFIX)
@@ -30,6 +37,24 @@ async def mom(context):
 async def roll(context):
     number = random.randint(1, 21)
     await client.say("You have rolled a " + str(number) + ", " + context.message.author.mention + ".")
+
+ #Russian Roulette
+@client.command(name="roulette",
+                description="For each use, the trigger is pulled until the gun goes off. Use the reload command after it does do or at your own leisure.",
+                brief="Are you currently feeling lucky, punk?",
+                aliases=[ 'rr', 'blyat', 'lucky', 'luck' ],
+                pass_context=True)
+async def roulette(context):
+  global luck
+  global bang
+  if luck == bang:
+    await client.say(context.message.author.mention + " Bang.")
+    luck = luck - 5
+    return (luck)
+  if luck <= bang and luck != bang:
+    await client.say(context.message.author.mention + " Click.")
+    luck = luck + 1
+    return (luck)
                 
 client.run(os.getenv("TOKEN"))
 
