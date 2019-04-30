@@ -32,7 +32,6 @@ async def mom(context):
     ]
     #await client.say(random.choice(possible_responses)) for no @
     await client.say(context.message.author.mention + "," + random.choice(possible_responses))
-  bot.add_cog(Help())
 
 #Dice Roller v1
 @client.command(name="roll",
@@ -42,7 +41,6 @@ async def mom(context):
 async def roll(context):
     number = random.randint(1, 21)
     await client.say("You have rolled a " + str(number) + ", " + context.message.author.mention + ".")
-  bot.add_cog(Help())
 
 #Russian Roulette
 @client.command(name="roulette",
@@ -61,7 +59,6 @@ async def roulette(context):
     await client.say(context.message.author.mention + " Click.")
     luck = luck + 1
     return (luck)
-  bot.add_cog(Help())
   
 #Reload
 @client.command(name="reload",
@@ -74,7 +71,6 @@ async def reload(context):
   luck = random.randint(1,6)
   await client.say(context.message.author.mention + " I  have emptied the firearm and inserted one bullet into a random chamber.")
   return (luck)
-  bot.add_cog(Help())
 
 #Peek
 @client.command(name="peek",
@@ -91,7 +87,6 @@ async def peek(context):
     await client.say(context.message.author.mention + " Oh dear.") 
   if lucky != bangy:
     await client.say(context.message.author.mention + " how cowardly. The bullet is " + str(peek) + " chamber(s) away.")
-  bot.add_cog(Help())
                 
 client.run(os.getenv("TOKEN"))
 
