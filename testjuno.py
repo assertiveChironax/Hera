@@ -49,7 +49,7 @@ async def roulette(context):
   global bank
   if luck == bang:
     luck = random.randint(1,6)
-    await client.say(context.message.author.mention + " Bang. I have placed the bullet in a new chamber.")
+    await client.say(context.message.author.mention + " Bang. \n I have emptied the firearm and placed a bullet in a new chamber.")
     return (luck)
   if luck <= bang and luck != bang:
     await client.say(context.message.author.mention + " Click.")
@@ -80,7 +80,7 @@ async def peek(context):
   if peek == 1:
     await client.say(context.message.author.mention + " Oh dear.") 
   else:
-    await client.say(context.message.author.mention + " how cowardly. The bullet is " + str(peek) + " chamber(s) away.")
+    await client.say(context.message.author.mention + " How cowardly. The bullet is " + str(peek) + " chamber(s) away.")
                 
 client.run(os.getenv("TOKEN"))
 
