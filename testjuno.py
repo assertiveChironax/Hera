@@ -9,13 +9,17 @@ luck = luck
 
 #Server $$$ Bank
 bank = 0
+bank = bank
 
 #Item list
 sauce = 0
 paper = 0
 clout = 0
 juice = 0
-
+sauce = sauce
+paper = paper
+clout = clout
+juice = juice
 
 BOT_PREFIX = ("!")
 
