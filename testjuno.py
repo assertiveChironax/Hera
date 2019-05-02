@@ -16,9 +16,6 @@ paper = 0
 clout = 0
 juice = 0
 
-#Gacha List
-prizes = [ "q", "w", "e", "r", ]
-
 
 BOT_PREFIX = ("!")
 
@@ -73,12 +70,12 @@ async def roulette(context):
     return (bank)
   
 #Cash
-@client.command(name="cash",
+@client.command(name="bank",
                 description="Displays cash earned by the server.",
                 brief="Check the budget of the server.",
-                aliases=[ 'money' ],
+                aliases=[ 'money', 'cash', ],
                 pass_context=True)
-async def cash(context):
+async def bank(context):
   global bank
   await client.say(context.message.author.mention + "The server currently has $" + str(bank) +"."
 
@@ -89,7 +86,7 @@ async def cash(context):
                 aliases=[ 'rng' ],
                 pass_context=True)
 async def gacha(context):
-  global prizes
+  prizes = [ "q", "w", "e", "r", ]
   global bank
   global sauce
   global paper
