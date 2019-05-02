@@ -1,4 +1,5 @@
 import random
+import math
 from discord.ext.commands import Bot
 import os
 
@@ -90,7 +91,7 @@ async def bank(context):
                 aliases=[ 'rng' ],
                 pass_context=True)
 async def gacha(context):
-  prizes = [ "q", "w", "e", "r", ]
+  prizes = [ 1, 2, 3, 4, ]
   global bank
   global sauce
   global paper
@@ -100,22 +101,22 @@ async def gacha(context):
     bank = bank - 1000
     await client.say(context.message.author.mention + "Rolling..."
     prize = random.choice(prizes)
-    if prize == q:
+    if prize == 1:
       sauce = sauce + 1
       await client.say(context.message.author.mention + "Congratulations. You won sauce."
       return (sauce)
       return (bank)
-    elif prize == w:
+    elif prize == 2:
       clout = clout + 1
       await client.say(context.message.author.mention + "Congratulations. You won clout."
       return (clout)
       return (bank)
-    elif prize == e:
+    elif prize == 3:
       paper = paper + 1
       await client.say(context.message.author.mention + "Congratulations. You won paper."
       return (paper)
       return (bank)
-    elif prize == r:
+    elif prize == 4:
       juice = juice + 1
       await client.say(context.message.author.mention + "Congratulations. You won juice."
       return (juice)
