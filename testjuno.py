@@ -6,8 +6,6 @@ import os
 luck = random.randint(1,6)
 bang = 6
 luck = luck
-lucky = luck
-bangy = bang
 
 BOT_PREFIX = ("!")
 
@@ -16,7 +14,7 @@ client = Bot(command_prefix=BOT_PREFIX)
 #Yes/No
 @client.command(name="mom",
                 description="Determine the answer to yes-or-no style questions.",
-                brief="Why do you not you ask your Mother?",
+                brief="Why do you not ask your Mother?",
                 aliases=[ 'mother', 'mommy', 'mama', 'ma' ],
                 pass_context=True)
 async def mom(context):
@@ -48,8 +46,8 @@ async def roulette(context):
   global luck
   global bang
   if luck == bang:
-    await client.say(context.message.author.mention + " Bang.")
-    luck = luck - 5
+    luck = random.randint(1,6)
+    await client.say(context.message.author.mention + " Bang. I have placed the bullet in a new chamber.")
     return (luck)
   if luck <= bang and luck != bang:
     await client.say(context.message.author.mention + " Click.")
@@ -63,7 +61,7 @@ async def roulette(context):
                 aliases=[ 'r' ],
                 pass_context=True)
 async def reload(context):
-  global lucky
+  global luck
   luck = random.randint(1,6)
   await client.say(context.message.author.mention + " I  have emptied the firearm and inserted one bullet into a random chamber.")
   return (luck)
@@ -74,14 +72,12 @@ async def reload(context):
                 brief="Naughty, naughty.",
                 pass_context=True)
 async def peek(context):
-  global lucky
-  global bangy
-  lucky = luck
-  bangy = bang
+  global luck
+  global bang
   peek = (bang - luck) + 1
   if peek == 1:
     await client.say(context.message.author.mention + " Oh dear.") 
-  if lucky != bangy:
+  else:
     await client.say(context.message.author.mention + " how cowardly. The bullet is " + str(peek) + " chamber(s) away.")
                 
 client.run(os.getenv("TOKEN"))
