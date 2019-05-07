@@ -92,7 +92,7 @@ async def choose(self, *choices):
   if len(choices) < 2:
     await client.say(context.message.author.mention + " There are not enough choices.) 
   else:
-    await client.say(context.message.author.mention + " I choose " + random.randchoice(choices) + ".")
+    await client.say(context.message.author.mention + " I choose " + random.choice(choices) + ".")
                 
 client.run(os.getenv("TOKEN"))
 
