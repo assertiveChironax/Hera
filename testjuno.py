@@ -81,6 +81,18 @@ async def peek(context):
     await client.say(context.message.author.mention + " Oh dear.") 
   else:
     await client.say(context.message.author.mention + " How cowardly. The bullet is " + str(peek) + " chamber(s) away.")
+    
+#Choose
+@client.command(name="choose",
+                description="Picks something out of a pool of somethings.",
+                brief="Would you like Mother to choose for you?",
+                aliases=[ 'pick', 'select' ],
+                pass_context=True)
+async def peek(context, *choices):
+  if len(choices) < 2:
+    await client.say(context.message.author.mention + " There are not enough choices.) 
+  else:
+    await client.say(context.message.author.mention + " I choose " + random.choice(choices) + ".")
                 
 client.run(os.getenv("TOKEN"))
 
