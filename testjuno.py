@@ -88,7 +88,7 @@ async def peek(context):
                 brief="Would you like Mother to choose for you?",
                 aliases=[ 'pick', 'select' ],
                 pass_context=True)
-async def peek(context, *choices):
+async def choose(context, *choices):
   if len(choices) < 2:
     await client.say(context.message.author.mention + " There are not enough choices.) 
   else:
