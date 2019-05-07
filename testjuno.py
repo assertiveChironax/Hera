@@ -90,7 +90,7 @@ async def peek(context):
                 pass_context=True)
 async def choose(*choices):
   if len(choices) < 2:
-    await client.say(context.message.author.mention + " There are not enough choices.) 
+    await client.say(context.message.author.mention + " There are not enough choices.") 
   else:
     await client.say(context.message.author.mention + " I choose " + random.choice(choices) + ".")
                 
