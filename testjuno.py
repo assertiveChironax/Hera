@@ -26,33 +26,33 @@ client = Bot(command_prefix=BOT_PREFIX)
                 brief="I suppose we need more prizes.",
                 pass_context=True)
 async def addprize(context, prize):
-  global prizepool
-  if len(prize) > 1:
-    await client.say(context.message.author.mention + " You may only add one prize at a time."
-  else:
-    prizepool.append(prize)
-    await client.say(context.message.author.mention + " I have added " + (prize) + " to the pool."
-    return (prizepool)
+    global prizepool
+    if len(prize) > 1:
+        await client.say(context.message.author.mention + " You may only add one prize at a time.")
+    else:
+        prizepool.append(prize)
+        await client.say(context.message.author.mention + " I have added " + (prize) + " to the pool.")
+        return (prizepool)
 
 #Allowance
 @client.command(name='allowance',
                 description="Either gives or takes money from the server.",
-                brief="Are you going to ask me for currency again?"
+                brief="Are you going to ask me for currency again?",
                 aliases=[ 'mompls', 'mommypls', 'mamapls', 'mapls', 'motherpls' ],
                 pass_context=True)
 async def allowance(context):
-  global dollars
-  mercy = random.randint(1,3)
-  if mercy == 1:
-    dollars = dollars + 100
-    await client.say(context.message.author.mention + " Very well then. Here is $100."
-    return (dollars)
-  if mercy == 2:
-    dollars = dollars - 25
-    await client.say(context.message.author.mention + " You have asked for too much. I will be taking $25 back."
-    return (dollars)
-  if mercy == 3:
-    await client.say(context.message.author.mention + " Perhaps another time."
+    global dollars
+    mercy = random.randint(1,3)
+    if mercy == 1:
+        dollars = dollars + 100
+        await client.say(context.message.author.mention + " Very well then. Here is $100.")
+        return (dollars)
+    if mercy == 2:
+        dollars = dollars - 25
+        await client.say(context.message.author.mention + " You have asked for too much. I will be taking $25 back.")
+        return (dollars)
+    if mercy == 3:
+        await client.say(context.message.author.mention + " Perhaps another time.")
 
 #Bank
 @client.command(name='bank',
@@ -61,8 +61,8 @@ async def allowance(context):
                 aliases=[ 'money', 'cash' ],
                 pass_context=True)
 async def bank(context):
-  global dollars
-  await client.say(context.message.author.mention + " The server currently has $" + str(dollars) + ".")
+    global dollars
+    await client.say(context.message.author.mention + " The server currently has $" + str(dollars) + ".")
   
 #Choose
 @client.command(name="choose",
@@ -82,10 +82,10 @@ async def choose(context, *choices):
                 brief="New prizes are needed?",
                 pass_context=True)
 async def clearprizes(context):
-  global prizepool
-  prizepool = []
-  await client.say(context.message.author.mention + " I have cleared the pool." )
-  return (prizepool)
+    global prizepool
+    prizepool = []
+    await client.say(context.message.author.mention + " I have cleared the pool." )
+    return (prizepool)
 
 #Dice Roller v1
 @client.command(name="roll",
@@ -102,14 +102,14 @@ async def roll(context):
                 brief="What will you win?",
                 pass_context=True)
 async def gacha(context):
-  global dollars
-  global prizepool
-  if dollars < 1000:
-    await client.say(context.message.author.mention + " The server currently does not have enough money to roll.")
-  if dollars >= 1000:
-    dollars = dollars - 1000
-    await client.say(context.message.author.mention + " Rolling. You won " + random.choice(prizepool) + ".")
-    return (dollars)
+    global dollars
+    global prizepool
+    if dollars < 1000:
+        await client.say(context.message.author.mention + " The server currently does not have enough money to roll.")
+    if dollars >= 1000:
+        dollars = dollars - 1000
+        await client.say(context.message.author.mention + " Rolling. You won " + random.choice(prizepool) + ".")
+        return (dollars)
   
 #Peek
 @client.command(name="peek",
@@ -131,9 +131,9 @@ async def peek(context):
                 brief="What can you win?",
                 pass_context=True)
 async def prizes(context):
-  global prizepool
-  await client.say(context.message.author.mention + " The prizes currently available are " + (prizepool) + ".")
-  
+    global prizepool
+    await client.say(context.message.author.mention + " The prizes currently available are " + (prizepool) + ".")
+
 #Reload
 @client.command(name="reload",
                 description="For each use after the gun goes off in the roulette game. Or if you would like some fresh luck.",
@@ -181,5 +181,5 @@ async def mom(context):
     #await client.say(random.choice(possible_responses)) for no @
     await client.say(context.message.author.mention + random.choice(possible_responses))
 
-client.run(os.getenv("TOKEN"))
+client.run("NTcxMDY4NTIzMDkxMzI5MDQ5.XNJpZw.ZWNSfx3sMA65sBpyaPSFbbUtjDc")
 
