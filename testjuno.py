@@ -20,20 +20,6 @@ BOT_PREFIX = ("!")
 
 client = Bot(command_prefix=BOT_PREFIX)
 
-#Add Prize
-@client.command(name='addprize',
-                description="Adds a prize to the pool.",
-                brief="I suppose we need more prizes.",
-                pass_context=True)
-async def addprize(context, *prize):
-    global prizepool
-    if len(prize) > 1:
-        await client.say(context.message.author.mention + " You may only add one prize at a time.")
-    else:
-        prizepool.append(prize)
-        await client.say(context.message.author.mention + " I have added " + (prize) + " to the pool.")
-        return (prizepool)
-
 #Allowance
 @client.command(name='allowance',
                 description="Either gives or takes money from the server.",
@@ -75,17 +61,6 @@ async def choose(context, *choices):
         await client.say(context.message.author.mention + " There are not enough choices.") 
     else:
         await client.say(context.message.author.mention + " I choose " + random.choice(choices) + ".")
-
-#Clear Prizes
-@client.command(name='clearprizes',
-                description="Clears the prize pool.",
-                brief="New prizes are needed?",
-                pass_context=True)
-async def clearprizes(context):
-    global prizepool
-    prizepool = []
-    await client.say(context.message.author.mention + " I have cleared the pool." )
-    return (prizepool)
 
 #Dice Roller v1
 @client.command(name="roll",
