@@ -8,9 +8,6 @@ luck = random.randint(1,6)
 bang = 6
 luck = luck
 
-#Stores Music Player
-players = {}
-
 BOT_PREFIX = ("!")
 
 client = Bot(command_prefix=BOT_PREFIX)
