@@ -25,7 +25,7 @@ client = Bot(command_prefix=BOT_PREFIX)
                 description="Adds a prize to the pool.",
                 brief="I suppose we need more prizes.",
                 pass_context=True)
-async def addprize(context, prize):
+async def addprize(context, *prize):
     global prizepool
     if len(prize) > 1:
         await client.say(context.message.author.mention + " You may only add one prize at a time.")
