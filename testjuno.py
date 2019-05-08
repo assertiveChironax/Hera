@@ -12,7 +12,7 @@ BOT_PREFIX = ("!")
 
 client = Bot(command_prefix=BOT_PREFIX)
 
-Class All Commands(commands.Cog):
+Class All(commands.Cog):
   #Yes/No
   @client.command(name="mom",
                   description="Determine the answer to yes-or-no style questions.",
