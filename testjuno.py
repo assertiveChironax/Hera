@@ -8,6 +8,9 @@ luck = random.randint(1,6)
 bang = 6
 luck = luck
 
+#Stores Music Player
+players = {}
+
 BOT_PREFIX = ("!")
 
 client = Bot(command_prefix=BOT_PREFIX)
@@ -44,17 +47,16 @@ async def roll(context):
                 aliases=[ 'rr', 'blyat', 'lucky', 'luck' ],
                 pass_context=True)
 async def roulette(context):
-  global luck
-  global bang
-  global bank
-  if luck == bang:
-    luck = random.randint(1,6)
-    await client.say(context.message.author.mention + " Bang. \n I have emptied the firearm and placed a bullet in a new chamber.")
-    return (luck)
-  if luck <= bang and luck != bang:
-    await client.say(context.message.author.mention + " Click.")
-    luck = luck + 1
-    return (luck)
+    global luck
+    global bang
+    if luck == bang:
+        luck = random.randint(1,6)
+        await client.say(context.message.author.mention + " Bang. \n I have emptied the firearm and placed a bullet in a new chamber.")
+        return (luck)
+    if luck <= bang and luck != bang:
+        await client.say(context.message.author.mention + " Click.")
+        luck = luck + 1
+        return (luck)
   
 #Reload
 @client.command(name="reload",
@@ -63,10 +65,10 @@ async def roulette(context):
                 aliases=[ 'r' ],
                 pass_context=True)
 async def reload(context):
-  global luck
-  luck = random.randint(1,6)
-  await client.say(context.message.author.mention + " I  have emptied the firearm and inserted one bullet into a random chamber.")
-  return (luck)
+    global luck
+    luck = random.randint(1,6)
+    await client.say(context.message.author.mention + " I  have emptied the firearm and inserted one bullet into a random chamber.")
+    return (luck)
 
 #Peek
 @client.command(name="peek",
@@ -74,13 +76,13 @@ async def reload(context):
                 brief="Naughty, naughty.",
                 pass_context=True)
 async def peek(context):
-  global luck
-  global bang
-  peek = (bang - luck) + 1
-  if peek == 1:
-    await client.say(context.message.author.mention + " Oh dear.") 
-  else:
-    await client.say(context.message.author.mention + " How cowardly. The bullet is " + str(peek) + " chamber(s) away.")
+    global luck
+    global bang
+    peek = (bang - luck) + 1
+    if peek == 1:
+        await client.say(context.message.author.mention + " Oh dear.") 
+    else:
+        await client.say(context.message.author.mention + " How cowardly. The bullet is " + str(peek) + " chamber(s) away.")
     
 #Choose
 @client.command(name="choose",
@@ -89,10 +91,10 @@ async def peek(context):
                 aliases=[ 'pick', 'select' ],
                 pass_context=True)
 async def choose(context, *choices):
-  if len(choices) < 2:
-    await client.say(context.message.author.mention + " There are not enough choices.") 
-  else:
-    await client.say(context.message.author.mention + " I choose " + random.choice(choices) + ".")
-                
+    if len(choices) < 2:
+        await client.say(context.message.author.mention + " There are not enough choices.") 
+    else:
+        await client.say(context.message.author.mention + " I choose " + random.choice(choices) + ".")
+             
 client.run(os.getenv("TOKEN"))
 
