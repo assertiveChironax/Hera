@@ -94,9 +94,8 @@ async def peek(context):
                 brief="What can you win?",
                 pass_context=True)
 async def prizes(context):
-    prizepool = [ "a weed", "a beer", "an eros", "an ares", "an eris", "raw beef", "raw fish", "a hug",
-            "a headpat", ]
-    await client.say(context.message.author.mention + " The prizes currently available are " + (prizepool) + ".")
+    await client.say(context.message.author.mention + " The prizes currently available are " + "an ares, a beer, " +
+                     "a headpat, a hug, " + "an eris, an eros, " + "raw beef, and raw fish.")
 
 #Reload
 @client.command(name="reload",
