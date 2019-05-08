@@ -77,8 +77,8 @@ async def reload(context):
 async def peek(context):
     global luck
     global bang
-    peek = (bang - luck)
-    if peek == 0:
+    peek = (bang - luck) + 1
+    if peek == 1:
         await client.say(context.message.author.mention + " Oh dear.") 
     else:
         await client.say(context.message.author.mention + " How cowardly. The bullet is " + str(peek) + " chamber(s) away.")
