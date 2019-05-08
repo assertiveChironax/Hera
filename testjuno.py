@@ -95,7 +95,7 @@ async def peek(context):
                 pass_context=True)
 async def prizes(context):
     await client.say(context.message.author.mention + " The prizes currently available are " + "an ares, a beer, " +
-                     "a headpat, a hug, " + "an eris, an eros, " + "raw beef, and raw fish.")
+                     "a headpat, a hug, " + "an eris, an eros, " + "raw beef, raw fish, and a weed.")
 
 #Reload
 @client.command(name="reload",
