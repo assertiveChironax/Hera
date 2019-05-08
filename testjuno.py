@@ -9,8 +9,8 @@ bang = 6
 luck = luck
 
 #Bank Variables
-bank = 0
-bank = bank
+cashmoney = 0
+cashmoney = cashmoney
 
 BOT_PREFIX = ("!")
 
@@ -50,31 +50,31 @@ async def roll(context):
 async def roulette(context):
     global luck
     global bang
-    global bank
+    global cashmoney
     if luck == bang:
-        bank = bank - 200
+        cashmoney = cashmoney - 200
         luck = random.randint(1,6)
         await client.say(context.message.author.mention + " Bang." +
                          "\n You have lost $200. I have emptied the firearm and placed a bullet in a new chamber.")
         return (luck)
-        return (bank)
+        return (cashmoney)
     if luck <= bang and luck != bang:
         luck = luck + 1
-        bank = bank + 100
+        cashmoney = cashmoney + 100
         await client.say(context.message.author.mention + " Click." +
                          "\n You have won $100.")
         return (luck)
-        return (bank)
+        return (cashmoney)
   
-#Bank
-@client.command(name="bank",
+#Money
+@client.command(name="money",
                 description="Displays the amount of money earned by the server.",
                 brief="Would you like to check your balance?",
-                aliases=[ 'cash', 'money' ],
+                aliases=[ 'cash', 'bank' ],
                 pass_context=True)
-async def bank(context):
-  global bank
-  await client.say(context.message.author.mention + "The server currently has $" + bank + ".")
+async def money(context):
+  global cashmoney
+  await client.say(context.message.author.mention + "The server currently has $" + cashmoney + ".")
   
 #Reload
 @client.command(name="reload",
