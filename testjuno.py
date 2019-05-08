@@ -56,17 +56,7 @@ async def roulette(context):
         luck = luck + 1
         await client.say(context.message.author.mention + " Click.")
         return (luck)
-
-#Money
-@client.command(name="money",
-                description="Displays the amount of money earned by the server.",
-                brief="Would you like to check your balance?",
-                aliases=[ 'cash', 'bank' ],
-                pass_context=True)
-async def money(context):
-  global cashmoney
-  await client.say(context.message.author.mention + "The server currently has $" + cashmoney + ".")
-
+      
 #Reload
 @client.command(name="reload",
                 description="For each use after the gun goes off in the roulette game. Or if you would like some fresh luck.",
@@ -87,8 +77,8 @@ async def reload(context):
 async def peek(context):
     global luck
     global bang
-    peek = (bang - luck) + 1
-    if peek == 1:
+    peek = (bang - luck)
+    if peek == 0:
         await client.say(context.message.author.mention + " Oh dear.") 
     else:
         await client.say(context.message.author.mention + " How cowardly. The bullet is " + str(peek) + " chamber(s) away.")
