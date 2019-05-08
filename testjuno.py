@@ -53,18 +53,18 @@ async def roulette(context):
     global cashmoney
     if luck == bang:
         cashmoney = cashmoney - 200
+        return (cashmoney)
         luck = random.randint(1,6)
         await client.say(context.message.author.mention + " Bang." +
                          "\n You have lost $200. I have emptied the firearm and placed a bullet in a new chamber.")
         return (luck)
-        return (cashmoney)
     if luck <= bang and luck != bang:
         luck = luck + 1
         cashmoney = cashmoney + 100
+        return (cashmoney)
         await client.say(context.message.author.mention + " Click." +
                          "\n You have won $100.")
         return (luck)
-        return (cashmoney)
   
 #Money
 @client.command(name="money",
