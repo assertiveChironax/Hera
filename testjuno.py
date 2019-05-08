@@ -8,10 +8,6 @@ luck = random.randint(1,6)
 bang = 6
 luck = luck
 
-#Gacha Variables
-prizepool = [ "a weed", "a beer", "an eros", "an ares", "an eris", "raw beef", "raw fish", "a hug",
-            "a headpat", ]
-
 #Cash Variables
 dollars = 0
 dollars = dollars
@@ -62,15 +58,6 @@ async def choose(context, *choices):
     else:
         await client.say(context.message.author.mention + " I choose " + random.choice(choices) + ".")
 
-#Dice Roller v1
-@client.command(name="roll",
-                description="Rolls a single d20 die. Apologies, Vee is not smart enough to let you roll multiple dice",
-                brief="Does this need explaining?",
-                pass_context=True)
-async def roll(context):
-    number = random.randint(1, 21)
-    await client.say(context.message.author.mention + " You have rolled a " + str(number) + ".")
-
 #Gacha
 @client.command(name='gacha',
                 description="Uses $1000 to roll in the server gacha machine.",
@@ -78,7 +65,8 @@ async def roll(context):
                 pass_context=True)
 async def gacha(context):
     global dollars
-    global prizepool
+    prizepool = [ "a weed", "a beer", "an eros", "an ares", "an eris", "raw beef", "raw fish", "a hug",
+            "a headpat", ]
     if dollars < 1000:
         await client.say(context.message.author.mention + " The server currently does not have enough money to roll.")
     if dollars >= 1000:
@@ -106,7 +94,8 @@ async def peek(context):
                 brief="What can you win?",
                 pass_context=True)
 async def prizes(context):
-    global prizepool
+    prizepool = [ "a weed", "a beer", "an eros", "an ares", "an eris", "raw beef", "raw fish", "a hug",
+            "a headpat", ]
     await client.say(context.message.author.mention + " The prizes currently available are " + (prizepool) + ".")
 
 #Reload
@@ -120,7 +109,16 @@ async def reload(context):
     luck = random.randint(1,6)
     await client.say(context.message.author.mention + " I  have emptied the firearm and inserted one bullet into a random chamber.")
     return (luck)
-  
+
+#Roll
+@client.command(name="roll",
+                description="Rolls a single d20 die. Apologies, Vee is not smart enough to let you roll multiple dice",
+                brief="Does this need explaining?",
+                pass_context=True)
+async def roll(context):
+    number = random.randint(1, 21)
+    await client.say(context.message.author.mention + " You have rolled a " + str(number) + ".")
+            
 #Russian Roulette
 @client.command(name="roulette",
                 description="For each use, the trigger is pulled until the gun goes off. Use the reload command after it does do or at your own leisure.",
