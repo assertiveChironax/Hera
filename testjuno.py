@@ -9,8 +9,8 @@ bang = 6
 luck = luck
 
 #Gacha Variables
-prizepool = []
-prizepool = prizepool
+prizepool = [ "a weed", "a beer", "an eros", "an ares", "an eris", "raw beef", "raw fish", "a hug",
+            "a headpat", ]
 
 #Cash Variables
 dollars = 0
