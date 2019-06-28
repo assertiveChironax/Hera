@@ -37,11 +37,11 @@ async def agni(context):
                      "\n ```Agni bites you!```" +
                      "Oh dear, it seems Agni has bitten you. I will be taking $25 to purchase appropriate first aid supplies and treat you.")
     return (pats, dollars)
-  elif:
+  else:
     pats = pats + 1
     dollars = dollars + 1
-  await client.say("_Pats Agni._ What is this? It seems he has a gift for you- Here is $1.")
-  return (pats, dollars)
+    await client.say("_Pats Agni._ What is this? It seems he has a gift for you- Here is $1.")
+    return (pats, dollars)
 
 #Allowance
 @client.command(name='allowance',
