@@ -13,11 +13,22 @@ dollars = 0
 dollars = dollars
 
 #Prizes
-won = [an ares, an eris, an eros]
+won = []
 
 BOT_PREFIX = ("*")
 
 client = Bot(command_prefix=BOT_PREFIX)
+
+class Jocuri:
+    """Jocuri documentations"""
+
+    @commands.command(pass_context=True)
+    async def ping(self, ctx):
+        """Pong Pong Pong :DDD"""
+        await bot.say(":ping_pong: Pong!! xD")
+        print ("user has pinged")
+
+bot.add_cog(Jocuri())
 
 #Allowance
 @client.command(name='allowance',
