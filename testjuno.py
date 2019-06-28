@@ -15,10 +15,6 @@ dollars = dollars
 #Prizes
 won = [an ares, an eris, an eros]
 
-class Commands:
-    """Available Commands"""
-bot.add_cog(Commands())
-
 BOT_PREFIX = ("*")
 
 client = Bot(command_prefix=BOT_PREFIX)
