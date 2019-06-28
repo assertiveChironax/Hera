@@ -39,8 +39,8 @@ async def agni(context):
     return (pats, dollars)
   else:
     pats = pats + 1
-    dollars = dollars + 1
-    await client.say("_Pats Agni._ What is this? It seems he has a gift for you- Here is $1.")
+    dollars = dollars + 10
+    await client.say("_Pats Agni._ What is this? It seems he has a gift for you- Here is $10.")
     return (pats, dollars)
 
 #Allowance
@@ -169,8 +169,8 @@ async def roulette(context):
     global dollars
     if luck == bang:
         luck = random.randint(1,6)
-        dollars = dollars - 300
-        await client.say(context.message.author.mention + " Bang. Unfortunate- I will be taking $300." +
+        dollars = dollars - 100
+        await client.say(context.message.author.mention + " Bang. Unfortunate- I will be taking $100." +
                          "\n I have emptied the firearm and placed a bullet in a new chamber.")
         return (luck, dollars)
     if luck <= bang and luck != bang:
