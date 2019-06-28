@@ -17,6 +17,7 @@ won = [an ares, an eris, an eros]
 
 class Commands:
     """Available Commands"""
+bot.add_cog(Commands())
 
 BOT_PREFIX = ("*")
 
@@ -174,6 +175,5 @@ async def mom(context):
     #await client.say(random.choice(possible_responses)) for no @
     await client.say(context.message.author.mention + random.choice(possible_responses))
 
-bot.add_cog(Commands())
 client.run(os.getenv("TOKEN"))
 
