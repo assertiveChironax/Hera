@@ -68,7 +68,7 @@ async def choose(context, *choices):
                 pass_context=True)
 async def collection(context):
   global won
-  await client.say(context.message.author.mention + "The server has won: " + (', '.join(won)) + ".")
+  await client.say(context.message.author.mention + "The server has won: " + (*won, sep=", ") + ".")
 
 #Gacha
 @client.command(name='gacha',
