@@ -30,8 +30,16 @@ client = Bot(command_prefix=BOT_PREFIX)
 async def agni(context):
   global dollars
   global pats
-  pats = pats + 1
-  dollars = dollars + 1
+  if pats == 10:
+    pats = random.randint(1,10)
+    dollars = dollars - 25
+    await client.say(context.message.author.mention + 
+                     "\n ```Agni bites you!```" +
+                     "Oh dear, it seems Agni has bitten you. I will be taking $25 to purchase appropriate first aid supplies and treat you.")
+    return (pats, dollars)
+  elif:
+    pats = pats + 1
+    dollars = dollars + 1
   await client.say("_Pats Agni._ What is this? It seems he has a gift for you- Here is $1.")
   return (pats, dollars)
 
