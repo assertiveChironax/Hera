@@ -127,15 +127,18 @@ async def roll(context):
 async def roulette(context):
     global luck
     global bang
+    global dollars
     if luck == bang:
         luck = random.randint(1,6)
-        await client.say(context.message.author.mention + " Bang." +
+        dollars = dollars - 100
+        await client.say(context.message.author.mention + " Bang. Unfortunate- I will be taking $100." +
                          "\n I have emptied the firearm and placed a bullet in a new chamber.")
-        return (luck)
+        return (luck, dollars)
     if luck <= bang and luck != bang:
         luck = luck + 1
-        await client.say(context.message.author.mention + " Click.")
-        return (luck)
+        dollars = dollars + 100
+        await client.say(context.message.author.mention + " Click. Brave- here is $100.")
+        return (luck, dollars)
 
 #Yes/No
 @client.command(name="mom",
