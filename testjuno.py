@@ -68,7 +68,7 @@ async def choose(context, *choices):
                 pass_context=True)
 async def collection(context):
   global won
-  await client.say(context.message.author.mention + "The server has won " + str(won) + ".")
+  await client.say(context.message.author.mention + "The server has won: " + str(won) + ".")
 
 #Gacha
 @client.command(name='gacha',
@@ -89,19 +89,19 @@ async def gacha(context):
         await client.say(context.message.author.mention + " Rolling. You won " + got + ".")
         return (dollars, won)
   
-#Peek
-@client.command(name="peek",
-                description="If you are ever too nervous about pulling the trigger, you can always look through the chambers.",
-                brief="Naughty, naughty.",
-                pass_context=True)
-async def peek(context):
-    global luck
-    global bang
-    peek = (bang - luck) + 1
-    if peek == 1:
-        await client.say(context.message.author.mention + " Oh dear.") 
-    else:
-        await client.say(context.message.author.mention + " How cowardly. The bullet is " + str(peek) + " chamber(s) away.")
+###Peek
+##@client.command(name="peek",
+##                description="If you are ever too nervous about pulling the trigger, you can always look through the chambers.",
+##                brief="Naughty, naughty.",
+##                pass_context=True)
+##async def peek(context):
+##    global luck
+##    global bang
+##    peek = (bang - luck) + 1
+##    if peek == 1:
+##        await client.say(context.message.author.mention + " Oh dear.") 
+##    else:
+##        await client.say(context.message.author.mention + " How cowardly. The bullet is " + str(peek) + " chamber(s) away.")
       
 #Prizes
 @client.command(name='prizes',
@@ -112,17 +112,17 @@ async def prizes(context):
     await client.say(context.message.author.mention + " The prizes currently available are " + "an ares, a beer, " +
                      "a headpat, a hug, " + "an eris, an eros, " + "raw beef, raw fish, and a weed.")
 
-#Reload
-@client.command(name="reload",
-                description="For each use after the gun goes off in the roulette game. Or if you would like some fresh luck.",
-                brief="Reloads the gun.",
-                aliases=[ 'r' ],
-                pass_context=True)
-async def reload(context):
-    global luck
-    luck = random.randint(1,6)
-    await client.say(context.message.author.mention + " I  have emptied the firearm and inserted one bullet into a random chamber.")
-    return (luck)
+###Reload
+##@client.command(name="reload",
+##                description="For each use after the gun goes off in the roulette game. Or if you would like some fresh luck.",
+##                brief="Reloads the gun.",
+##                aliases=[ 'r' ],
+##                pass_context=True)
+##async def reload(context):
+##    global luck
+##    luck = random.randint(1,6)
+##    await client.say(context.message.author.mention + " I  have emptied the firearm and inserted one bullet into a random chamber.")
+##    return (luck)
 
 #Roll
 @client.command(name="roll",
