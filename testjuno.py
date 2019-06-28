@@ -15,7 +15,10 @@ dollars = dollars
 #Prizes
 won = [an ares, an eris, an eros]
 
-BOT_PREFIX = ("!")
+class Commands:
+    """Available Commands"""
+
+BOT_PREFIX = ("*")
 
 client = Bot(command_prefix=BOT_PREFIX)
 
@@ -145,8 +148,8 @@ async def roulette(context):
     global dollars
     if luck == bang:
         luck = random.randint(1,6)
-        dollars = dollars - 100
-        await client.say(context.message.author.mention + " Bang. Unfortunate- I will be taking $100." +
+        dollars = dollars - 300
+        await client.say(context.message.author.mention + " Bang. Unfortunate- I will be taking $300." +
                          "\n I have emptied the firearm and placed a bullet in a new chamber.")
         return (luck, dollars)
     if luck <= bang and luck != bang:
@@ -171,5 +174,6 @@ async def mom(context):
     #await client.say(random.choice(possible_responses)) for no @
     await client.say(context.message.author.mention + random.choice(possible_responses))
 
+bot.add_cog(Commands())
 client.run(os.getenv("TOKEN"))
 
