@@ -34,8 +34,8 @@ async def agni(context):
     pats = random.randint(1,10)
     dollars = dollars - 25
     await client.say(context.message.author.mention + 
-                     "\n ```Agni bites you!```" +
-                     "Oh dear, it seems Agni has bitten you. I will be taking $25 to purchase appropriate first aid supplies and treat you.")
+                     "```Agni bites you!```" +
+                     "\n Oh dear, it seems Agni has bitten you. I will be taking $25 to purchase appropriate first aid supplies and treat you.")
     return (pats, dollars)
   else:
     pats = pats + 1
