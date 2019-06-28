@@ -12,6 +12,9 @@ luck = luck
 dollars = 0
 dollars = dollars
 
+#Prizes
+won = []
+
 BOT_PREFIX = ("!")
 
 client = Bot(command_prefix=BOT_PREFIX)
@@ -58,6 +61,15 @@ async def choose(context, *choices):
     else:
         await client.say(context.message.author.mention + " I choose " + random.choice(choices) + ".")
 
+#Collection
+@client.command(name="collection",
+                description="Displays what prizes you have won from the gacha.",
+                brief="What have you won so far?",
+                pass_context=True)
+async def collection(context):
+  global won
+  await client.say(context.message.author.mention + "The server has won " + won + ".")
+
 #Gacha
 @client.command(name='gacha',
                 description="Uses $1000 to roll in the server gacha machine.",
@@ -65,14 +77,17 @@ async def choose(context, *choices):
                 pass_context=True)
 async def gacha(context):
     global dollars
+    global won
     prizepool = [ "a weed", "a beer", "an eros", "an ares", "an eris", "raw beef", "raw fish", "a hug",
             "a headpat", ]
     if dollars < 1000:
         await client.say(context.message.author.mention + " The server currently does not have enough money to roll.")
     if dollars >= 1000:
         dollars = dollars - 1000
-        await client.say(context.message.author.mention + " Rolling. You won " + random.choice(prizepool) + ".")
-        return (dollars)
+        got = random.choice(prizepool)
+        won.append(got)
+        await client.say(context.message.author.mention + " Rolling. You won " + got + ".")
+        return (dollars, won)
   
 #Peek
 @client.command(name="peek",
