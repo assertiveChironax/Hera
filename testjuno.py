@@ -15,9 +15,25 @@ dollars = dollars
 #Prizes
 won = []
 
+#Pat Counter
+pats = 0
+
 BOT_PREFIX = ("*")
 
 client = Bot(command_prefix=BOT_PREFIX)
+
+#Agni
+@client.command(name='agni',
+                description="Pats the best son.",
+                brief="I suppose Agni deserves a pat.",
+                pass_context=True)
+async def agni(context):
+  global dollars
+  global pats
+  pats = pats + 1
+  dollars = dollars + 1
+  await client.say("_Pats Agni._ What is this? It seems he has a gift for you- Here is $1.")
+  return (pats, dollars)
 
 #Allowance
 @client.command(name='allowance',
