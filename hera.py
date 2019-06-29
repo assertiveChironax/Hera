@@ -11,6 +11,10 @@ luck = random.randint(1,6)
 bang = 6
 luck = luck
 
+#Pats
+pats = 0
+pats = pats
+
 #Gacha Values
 won = []
 prize = ["an ares", "an eris", "an eros", "raw beef", "raw pork",
