@@ -25,7 +25,7 @@ client = commands.Bot(command_prefix = "*")
 
 #'Useless' bit of code to let me know when Hera's logged in.
 @client.event
-async def on_connect():
+async def on_ready():
     await client.change_presence(status=discord.Status.online,
                                  activity=discord.Game("Aperture Server"))
     print("Summoning.. She's here.")
