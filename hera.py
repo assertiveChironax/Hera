@@ -25,7 +25,7 @@ client = commands.Bot(command_prefix = "*")
 
 #'Useless' bit of code to let me know when Hera's logged in.
 @client.event
-async def on_ready():
+async def on_connect():
     await client.change_presence(status=discord.Status.online,
                                  activity=discord.Game("Aperture Server"))
     print("Summoning.. She's here.")
@@ -50,13 +50,14 @@ async def agni(ctx):
     pats = random.randint(1,10)
     dollars = dollars - 25
     await ctx.send(ctx.message.author.mention + 
-                     "```Agni bites you!```" +
+                     "```You reach to pat Agni, but Agni bites you!```" +
                      "\n Oh dear, it seems Agni has bitten you. I will be taking $25 to purchase appropriate first aid supplies and treat you.")
     return (pats, dollars)
   else:
     pats = pats + 1
     dollars = dollars + 10
-    await ctx.send("_Pats Agni._ What is this? It seems he has a gift for you- Here is $10.")
+    await ctx.send("```You pat Agni.```" +
+                   "\n What is this? It seems he has a gift for you- Here is $10.")
     return (pats, dollars)
 
 #Allowance
@@ -121,7 +122,7 @@ async def gacha(ctx):
         dollars = dollars - 1000
         got = random.choice(prize)
         won.append(got)
-        await ctx.send(ctx.author.mention + " You won " + str(got) + ".")
+        await ctx.send(ctx.author.mention + " Rolling. You won " + str(got) + ".")
 
 #Mom   
 @client.command(name="mom",
@@ -154,12 +155,14 @@ async def roulette(ctx):
     if luck == bang:
         luck = random.randint(1,6)
         dollars = dollars - 100
-        await ctx.send(ctx.author.mention + " Bang. Unfortunate- I will be taking $100 to cover your medical expenses.")
+        await ctx.send(ctx.author.mention + " ```Bang!```" +
+                       "\n Unfortunate- I will be taking $100 to cover your medical expenses.")
         return (luck, dollars)
     elif luck != bang:
         luck = luck + 1
         dollars = dollars + 100
-        await ctx.send(ctx.author.mention + " Click. Brave- Here is $100 as a reward.")
+        await ctx.send(ctx.author.mention + " ```Click.```" +
+                       "\n Brave- Here is $100 as a reward.")
         return (luck, dollars)
 
     
