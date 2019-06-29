@@ -1,1 +1,1 @@
-worker: python3 testjuno.py
+worker: python3 hera.py
