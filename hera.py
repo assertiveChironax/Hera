@@ -3,11 +3,6 @@ import random
 import os
 import discord
 import json
-import psycopg2
-
-DATABASE_URL = os.environ[os.getenv("DATZ")]
-
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 #Roulette Values
 luck = random.randint(1,6)
