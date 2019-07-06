@@ -78,21 +78,21 @@ async def agni(ctx):
     with open('users.json', 'r') as f:
         users = json.load(f)
         id = str(ctx.author.id)
-    if pats == 10:
-        pats = random.randint(1,10)
-        users[id]['cash'] -= 25
-        await ctx.send(ctx.message.author.mention + 
-                     "```You reach to pat Agni, but Agni bites you!```" +
-                     "\n Oh dear, it seems Agni has bitten you. \
+        if pats == 10:
+            pats = random.randint(1,10)
+            users[id]['cash'] -= 25
+            await ctx.send(ctx.message.author.mention +
+                           "```You reach to pat Agni, but Agni bites you!```" +
+                           "\n Oh dear, it seems Agni has bitten you. \
 I will be taking $25 to purchase appropriate first aid supplies and treat you.")
-        return (pats)
-    else:
-        pats = pats + 1
-        users[id]['cash'] += 10
-        await ctx.send("```You pat Agni.```" +
+            return (pats)
+        else:
+            pats = pats + 1
+            users[id]['cash'] += 10
+            await ctx.send("```You pat Agni.```" +
                    "\n What is this? It seems he has a gift for you- \
 Here is $10.")
-        return (pats)
+            return (pats)
     with open('users.json', 'w') as f:
         json.dump(users, f)
 
