@@ -86,7 +86,7 @@ async def agni(ctx):
                            "\n Oh dear, it seems Agni has bitten you. \
 I will be taking $25 to purchase appropriate first aid supplies and treat you.")
             return (pats)
-        else:
+        if pats != 10:
             pats = pats + 1
             users[id]['cash'] += 10
             await ctx.send("```You pat Agni.```" +
