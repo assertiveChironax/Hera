@@ -92,9 +92,9 @@ I will be taking $25 to purchase appropriate first aid supplies and treat you.")
             await ctx.send("```You pat Agni.```" +
                    "\n What is this? It seems he has a gift for you- \
 Here is $10.")
-            return (pats)
     with open('users.json', 'w') as f:
         json.dump(users, f)
+    return (pats)
 
 #Allowance
 @client.command(name="allowance",
@@ -223,6 +223,5 @@ your medical expenses.")
 #'Useless' code letting me know the program made it this far.   
 print("Done...")
 
-client.run("NTYwMzIzNjAwOTkzNzQ2OTQ2.XR_zbA.FmCZPvSpgi7Qi-NTXkPCzvhT2iA")
-#client.run(os.getenv("TOKEN"))
+client.run(os.getenv(TOKEN))
 
