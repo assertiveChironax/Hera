@@ -15,9 +15,6 @@ prize = ['an ares', 'an eris', 'an eros', 'raw beef', 'raw pork',
           'a penny', 'a used napkin', 'a potato chip', 'a custom role',
          'user-color replace']
 
-def creator(ctx):
-    return ctx.author.id == 220034017959870465
-
 #'Useless' code letting me know the program made it this far.
 print("Loading...")
 #Prefix
@@ -227,23 +224,7 @@ your medical expenses.")
         
     with open('users.json', 'w') as f:
         json.dump(users, f)
-
-#Test
-@client.command(name="test",
-                description="A test command.",
-                brief="A test command.",)
-@commands.check(creator)
-async def test(ctx):
-    with open('users.json', 'r') as f:
-        users = json.load(f)
-        id = str(ctx.author.id)
-        users[id]['cash'] += 1000
-        await ctx.send(ctx.author.mention + "Testing something? \
-Here is $1000.")
-    with open('users.json', 'w') as f:
-        json.dump(users, f)
-    
-#'Useless' code letting me know the program made it this far.   
+ 
 print("Done...")
 
 client.run(os.getenv("TOKEN"))
