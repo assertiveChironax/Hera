@@ -21,7 +21,7 @@ def creator(ctx):
 #'Useless' code letting me know the program made it this far.
 print("Loading...")
 #Prefix
-client = commands.Bot(command_prefix = ".")
+client = commands.Bot(command_prefix = "*”)
 #'Useless' bit of code to let me know when Hera's logged in.
 @client.event
 async def on_ready():
