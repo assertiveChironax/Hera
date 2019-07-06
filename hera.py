@@ -8,15 +8,15 @@ import json
 luck = random.randint(1,6)
 bang = 6
 luck = luck
+
 #Gacha Values
 prize = ['an ares', 'an eris', 'an eros', 'raw beef', 'raw pork',
           'raw fish', 'raw chicken', 'beans', 'chocolate', 'beer',
           'a weed', 'a headpat', 'a hug', 'lint', 'pocket sand',
-          'a penny', 'a used napkin', 'a potato chip', 'a custom role',
-         'user-color replace']
-
-def creator(ctx):
-    return ctx.author.id == 220034017959870465
+          'a penny', 'a used napkin', 'a potato chip',]
+#Pats
+pats = 0
+pats = pats
 
 #'Useless' code letting me know the program made it this far.
 print("Loading...")
@@ -26,7 +26,7 @@ client = commands.Bot(command_prefix = "*")
 @client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.online,
-                                 activity=discord.Game("ACH Server"))
+                                 activity=discord.Game("Aperture Labs Server"))
     print("Summoning.. She's here.")
 
 #New Registry
@@ -40,49 +40,61 @@ async def on_member_join(member):
     id = str(message.author.id)
     if not id in users:
         users[id] = {}
-        users[id]['xp'] = 0
-        users[id]['lvl'] = 1
         users[id]['cash'] = 0
         users[id]['box'] = []        
 #Updates .json
     with open('users.json', 'w') as f:
         json.dump(users, f)        
-#Participation + Registry + Censor
+#Participation + Registry + Censor(Being Tested)
 @client.event
 async def on_message(message):
     if message.author.bot:
         return
-    no_no = [ 'fuck', 'fucking', 'fucked', 'fucks', 
-                   'shit', 'shitting', 'shits', 'shitty', 
-                   'bitch', 'bitching', 'bitches', 'bitched',
-                  'pussy', 'asshole', 'damn', 'damned', 'motherfucker', 'motherfucka', ]
-    messagez = message.content.split(" ")
-    for word in messagez:
-        if word.lower() in no_no:
-            await message.channel.send("Language.")
+##    no_no = [ 'fuck', 'fucking', 'fucked', 'fucks', 
+##                   'shit', 'shitting', 'shits', 'shitty', 
+##                   'bitch', 'bitching', 'bitches', 'bitched',
+##                  'pussy', 'asshole', 'damn', 'damned', 'motherfucker', 'motherfucka', ]
+##    messagez = message.content.split(" ")
+##    for word in messagez:
+##        if word.lower() in no_no:
+##            await message.channel.send("Language.")
     with open('users.json', 'r') as f:
         users = json.load(f)      
     id = str(message.author.id)  
     if not id in users:
         users[id] = {}
-        users[id]['xp'] = 0
-        users[id]['lvl'] = 1
         users[id]['cash'] = 0
         users[id]['box'] = []
-    if id in users:
-        exp = 5
-        users[id]['xp'] += exp
-        xp = users[id]['xp']
-        lvl_start = users[id]['lvl']
-        lvl_end = int(xp ** (1/4))
-        
-        if lvl_start < lvl_end:
-            await message.channel.send('{} has leveled up to level {}'
-                                       .format(message.author.mention, lvl_end))
-            users[id]['lvl'] = lvl_end
     with open('users.json', 'w') as f:
         json.dump(users, f)
     await client.process_commands(message)
+
+#Agni
+@client.command(name='agni',
+                description="Pats the best son.",
+                brief="I suppose Agni deserves a pat.",)
+async def agni(ctx):
+    global pats
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+        id = str(ctx.author.id)
+    if pats == 10:
+        pats = random.randint(1,10)
+        users[id]['cash'] -= 25
+        await ctx.send(ctx.message.author.mention + 
+                     "```You reach to pat Agni, but Agni bites you!```" +
+                     "\n Oh dear, it seems Agni has bitten you. \
+I will be taking $25 to purchase appropriate first aid supplies and treat you.")
+        return (pats)
+    else:
+        pats = pats + 1
+        users[id]['cash'] += 10
+        await ctx.send("```You pat Agni.```" +
+                   "\n What is this? It seems he has a gift for you- \
+Here is $10.")
+        return (pats)
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
 
 #Allowance
 @client.command(name="allowance",
@@ -207,23 +219,10 @@ your medical expenses.")
         
     with open('users.json', 'w') as f:
         json.dump(users, f)
-
-#Test
-@client.command(name="test",
-                description="A test command.",
-                brief="A test command.",)
-@commands.check(creator)
-async def test(ctx):
-    with open('users.json', 'r') as f:
-        users = json.load(f)
-        id = str(ctx.author.id)
-        users[id]['cash'] += 1000
-        await ctx.send(ctx.author.mention + "Testing something? \
-Here is $1000.")
-    with open('users.json', 'w') as f:
-        json.dump(users, f)
     
 #'Useless' code letting me know the program made it this far.   
-print("Done....”)
+print("Done...")
 
-client.run(os.getenv("TOKEN"))
+client.run("NTYwMzIzNjAwOTkzNzQ2OTQ2.XR_zbA.FmCZPvSpgi7Qi-NTXkPCzvhT2iA")
+#client.run(os.getenv("TOKEN"))
+
