@@ -246,7 +246,8 @@ async def gun(ctx, member: discord.Member, money):
 {} but they throw their pocket sand into your eyes and get away!"
                                .format(member.mention))
                 with open('users.json', 'w') as f:
-                    json.dump(users, f)    
+                    json.dump(users, f)
+        
             if defense not in users[id]['box']:
                 id = str(member.id)
                 if users[id]['cash'] < money:
@@ -305,8 +306,8 @@ async def mom(ctx, *, question):
                 decsription="The best defense against a gun.",
                 brief="A best defense.",
                 aliases['ps',])
-async def pocketsand(ctx):
 @commands.check(creator)
+async def pocketsand(ctx):
     with open('users.json', 'r') as f:
         users = json.load(f)
         id = str(ctx.author.id)
