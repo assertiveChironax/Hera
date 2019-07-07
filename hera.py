@@ -305,7 +305,7 @@ async def mom(ctx, *, question):
 @client.command(name="pocketsand",
                 decsription="The best defense against a gun.",
                 brief="A best defense.",
-                aliases['ps',])
+                aliases=['ps',])
 @commands.check(creator)
 async def pocketsand(ctx):
     with open('users.json', 'r') as f:
