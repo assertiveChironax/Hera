@@ -132,7 +132,7 @@ async def bank(ctx):
     with open('users.json', 'r') as f:
         users = json.load(f)
         id = str(ctx.author.id)
-        await ctx.send(ctx.author.mention + " Your balance is ${}"
+        await ctx.send(ctx.author.mention + " Your balance is ${}."
                        .format(users[id]['cash']))
 #Choose
 @client.command(name="choose",
@@ -199,27 +199,68 @@ You have given {} ${}.".format(member.mention, money))
     with open('users.json', 'w') as f:
         json.dump(users, f)
 
+#Gift
+@client.command(name="gift",
+                description="Gives an item from the user to another user.",
+                brief="How kind of you.",)
+async def gift(ctx, member: discord.Member, *, thing):
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+        id = str(ctx.author.id)
+        thing = str(thing)
+        if thing not in users[id]['box']:
+                await ctx.send(ctx.author.mention + " You do not have that \
+item.")
+        if thing in users[id]['box']:
+            id = str(ctx.author.id)
+            users[id]['box'].remove(thing)
+            id = str(member.id)
+            users[id]['box'].append(thing)
+            await ctx.send(ctx.author.mention + " How kind. \
+You have given {} {}.".format(member.mention, thing))
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
+        
 #Gun
 @client.command(name="gun",
                 decsription="That is called robbing.",
                 brief="What do you intend to do with that gun?",
                 aliases=['rob', 'gimmetheloot', 'gimmetheloop', 'stickem',
                          'handsup', 'gimmeurFUCKINMONEY',])
-async def gun(ctx, member: discord.Member):
+async def gun(ctx, member: discord.Member, money):
     with open('users.json', 'r') as f:
         users = json.load(f)
         id = str(ctx.author.id)
+        money = int(money)
         agun = 'a gun'
         if agun not in users[id]['box']:
             await ctx.send(ctx.author.mention + " You do not have a gun.")
         if agun in users[id]['box']:
-            id = str(ctx.author.id)
-            users[id]['cash'] += 1000
-            users[id]['box'].remove(agun)
+            defense = 'pocket sand'
             id = str(member.id)
-            users[id]['cash'] -= 1000
-            await ctx.send(ctx.author.mention + " Oh my. \
-You have robbed {} for $1000.".format(member.mention))
+            if defense in users[id]['box']:
+                users[id]['box'].remove(defense)
+                id = str(ctx.author.id)
+                users[id]['box'].remove(agun)
+                await ctx.send(ctx.author.mention + " You attempt to rob \
+{} but they throw their pocket sand into your eyes and get away!"
+                               .format(member.mention))
+                with open('users.json', 'w') as f:
+                    json.dump(users, f)
+        
+            if defense not in users[id]['box']:
+                id = str(member.id)
+                if users[id]['cash'] < money:
+                    await ctx.send(ctx.author.mention + " {} does not have \
+the money you desire. Try someone else.".format(member.mention))
+                if users[id]['cash'] >= money:
+                    id = str(ctx.author.id)
+                    users[id]['cash'] += money
+                    users[id]['box'].remove(agun)
+                    id = str(member.id)
+                    users[id]['cash'] -= money
+                    await ctx.send(ctx.author.mention + " Oh my. \
+You have robbed {} for ${}.".format(member.mention, money))
     with open('users.json', 'w') as f:
         json.dump(users, f)
 
@@ -238,7 +279,7 @@ async def howmuch(ctx, member: discord.Member):
         
 #Mask
 @client.command(name="mask",
-                decsription="A gun?",
+                decsription="Gives a gun to the user.",
                 brief="A gun?",)
 @commands.check(creator)
 async def mask(ctx):
@@ -260,6 +301,20 @@ async def mom(ctx, *, question):
                           " Why do you not ask me later?",]
     await ctx.send(ctx.author.mention +
                    f' ```{question}```\n{random.choice(possible_responses)}')
+#Pocket Sand
+@client.command(name="pocketsand",
+                decsription="The best defense against a gun.",
+                brief="A best defense.",
+                aliases['ps',])
+async def pocketsand(ctx):
+@commands.check(creator)
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+        id = str(ctx.author.id)
+        users[id]['box'].append('pocket sand')
+        await ctx.send(ctx.author.mention + " Test command executed.")
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
 
 #Prizes
 @client.command(name="prizes",
