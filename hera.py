@@ -246,8 +246,7 @@ async def gun(ctx, member: discord.Member, money):
 {} but they throw their pocket sand into your eyes and get away!"
                                .format(member.mention))
                 with open('users.json', 'w') as f:
-                    json.dump(users, f)
-        
+                    json.dump(users, f)    
             if defense not in users[id]['box']:
                 id = str(member.id)
                 if users[id]['cash'] < money:
@@ -346,8 +345,7 @@ your medical expenses.")
             luck = luck + 1
             users[id]['cash'] += 100
             await ctx.send(ctx.author.mention + " ```Click.```" +
-                       "\n Brave- Here is $100 as a reward.")
-        
+                       "\n Brave- Here is $100 as a reward.")     
     with open('users.json', 'w') as f:
         json.dump(users, f)
     
