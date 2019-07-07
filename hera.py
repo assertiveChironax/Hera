@@ -13,10 +13,13 @@ luck = luck
 prize = ['an ares', 'an eris', 'an eros', 'raw beef', 'raw pork',
           'raw fish', 'raw chicken', 'beans', 'chocolate', 'beer',
           'a weed', 'a headpat', 'a hug', 'lint', 'pocket sand',
-          'a penny', 'a used napkin', 'a potato chip',]
+          'a penny', 'a used napkin', 'a potato chip', 'a gun',]
 #Pats
 pats = 0
 pats = pats
+
+def creator(ctx):
+    return ctx.author.id == 220034017959870465
 
 #'Useless' code letting me know the program made it this far.
 print("Loading...")
@@ -34,6 +37,7 @@ async def on_ready():
 async def on_member_join(member):
 #Opens .json
     with open('users.json', 'r') as f:
+
         users = json.load(f)
 #Registry upon joining the server.
 #Discord.py Rewrite doesn't work with ID's as integers.
@@ -165,12 +169,84 @@ async def gacha(ctx):
         if users[id]['cash'] < 1000:
             await ctx.send(ctx.author.mention +
                        " You do not have enough money.")
-        if users[id]['cash'] > 1000:
+        if users[id]['cash'] >= 1000:
             got = random.choice(prize)
             users[id]['cash'] -= 1000
             users[id]['box'].append(got)
             await ctx.send(ctx.author.mention +
                            " Rolling. You won {}.".format(got))
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
+
+#Give
+@client.command(name="give",
+                description="Gives some money from the user to another user.",
+                brief="How very generous of you.",)
+async def give(ctx, member: discord.Member, money):
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+        id = str(ctx.author.id)
+        money = int(money)
+        if users[id]['cash'] < money:
+                await ctx.send(ctx.author.mention + " You do not have that money.")
+        if users[id]['cash'] >= money:
+            id = str(ctx.author.id)
+            users[id]['cash'] -= money
+            id = str(member.id)
+            users[id]['cash'] += money
+            await ctx.send(ctx.author.mention + " How generous. \
+You have given {} ${}.".format(member.mention, money))
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
+
+#Gun
+@client.command(name="gun",
+                decsription="That is called robbing.",
+                brief="What do you intend to do with that gun?",
+                aliases=['rob', 'gimmetheloot', 'gimmetheloop', 'stickem',
+                         'handsup', 'gimmeurFUCKINMONEY',])
+async def gun(ctx, member: discord.Member):
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+        id = str(ctx.author.id)
+        agun = 'a gun'
+        if agun not in users[id]['box']:
+            await ctx.send(ctx.author.mention + " You do not have a gun.")
+        if agun in users[id]['box']:
+            id = str(ctx.author.id)
+            users[id]['cash'] += 1000
+            users[id]['box'].remove(agun)
+            id = str(member.id)
+            users[id]['cash'] -= 1000
+            await ctx.send(ctx.author.mention + " Oh my. \
+You have robbed {} for $1000.".format(member.mention))
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
+
+#How much?
+@client.command(name="howmuch",
+                decsription="Checks the balance of another user.",
+                brief="Nosey, are we?",)
+async def howmuch(ctx, member: discord.Member):
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+        id = str(member.id)
+        await ctx.send(ctx.author.mention + " {}'s balance is ${}."
+                       .format(member.mention, users[id]['cash']))
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
+        
+#Mask
+@client.command(name="mask",
+                decsription="A gun?",
+                brief="A gun?",)
+@commands.check(creator)
+async def mask(ctx):
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+        id = str(ctx.author.id)
+        users[id]['box'].append('a gun')
+        await ctx.send(ctx.author.mention + " You said you wanted a gun?")
     with open('users.json', 'w') as f:
         json.dump(users, f)
 
